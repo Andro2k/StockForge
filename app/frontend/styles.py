@@ -64,7 +64,7 @@ def get_sheet() -> str:
     return f"""
     /* --- BASE --- */
     QMainWindow, QWidget {{ 
-        background-color: {c.Bg}; color: {c.Text}; 
+        background-color: {c.Surface}; color: {c.Text}; 
         font-family: "{f.family}"; font-size: {f.body};
     }}
     
@@ -101,8 +101,49 @@ def get_sheet() -> str:
     QScrollBar:horizontal {{ background: {c.Bg}; height: 8px; margin: 0; }}
     QScrollBar::handle:horizontal {{ background: {c.Muted}; border-radius: {r['scroll']}; min-width: 20px; }}
     QScrollBar::handle:horizontal:hover {{ background: {c.Primary}; }}
-    """
 
+    /* --- CHECKBOX --- */
+    QCheckBox {{
+        spacing: 8px; /* Espacio entre el cuadro y el texto */
+    }}
+    QCheckBox::indicator {{
+        width: 18px;
+        height: 18px;
+        border: 2px solid {c.Border};
+        border-radius: 4px;
+        background-color: {c.Surface_Strong};
+    }}
+    QCheckBox::indicator:hover {{
+        border-color: {c.Primary};
+    }}
+    QCheckBox::indicator:checked {{
+        background-color: {c.Primary};
+        border-color: {c.Primary};
+        image: url(assets/icons/check.svg);
+    }}
+
+    /* --- SPINBOX --- */
+    QSpinBox, QDoubleSpinBox {{
+            background-color: {Palette.Surface_Strong}; color: {Palette.Text}; 
+            border: 1px solid {Palette.Border}; border-radius: 8px;
+            padding: 6px 10px; padding-right: 25px;
+    }}
+    QSpinBox::up-button, QDoubleSpinBox::up-button {{
+        subcontrol-origin: border; subcontrol-position: top right; width: 16px;
+        border: 1px solid {Palette.Border}; border-top-right-radius: 8px; 
+        background-color: {Palette.Surface_Strong};
+    }}
+    QSpinBox::down-button, QDoubleSpinBox::down-button {{
+        subcontrol-origin: border; subcontrol-position: bottom right; width: 16px;
+        border: 1px solid {Palette.Border};border-bottom-right-radius: 8px; 
+        background-color: {Palette.Surface_Strong};
+    }}
+    QSpinBox::up-button:hover, QSpinBox::down-button:hover, QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover{{ 
+        background-color: {Palette.Border}; 
+    }}
+    
+    """
+    
 # ==========================================
 # 4. ESTILOS ESPECÍFICOS (DICCIONARIO DE COMPONENTES)
 # ==========================================
@@ -167,23 +208,6 @@ STYLES = {
         }}
     """,
 
-    "spinbox_modern": f"""
-        QSpinBox, QDoubleSpinBox {{
-            background-color: {Palette.Surface_Strong}; color: {Palette.Text}; 
-            border: 1px solid {Palette.Border}; border-radius: 8px;
-            padding: 10px; padding-right: 30px;
-        }}
-        QSpinBox::up-button, QDoubleSpinBox::up-button {{
-            subcontrol-origin: border; subcontrol-position: top right; width: 25px; 
-            border-left: 1px solid {Palette.Border}; border-bottom: 1px solid {Palette.Border};
-            background-color: {Palette.Surface_Strong};
-        }}
-        QSpinBox::down-button, QDoubleSpinBox::down-button {{
-            subcontrol-origin: border; subcontrol-position: bottom right; width: 25px; 
-            border-left: 1px solid {Palette.Border}; background-color: {Palette.Surface_Strong};
-        }}
-        QSpinBox::up-button:hover, QSpinBox::down-button:hover {{ background-color: {Palette.Border}; }}
-    """,
     # --- SIDEBAR ---
     "sidebar": f"""
         QFrame {{
