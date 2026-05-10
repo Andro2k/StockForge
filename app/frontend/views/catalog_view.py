@@ -16,7 +16,7 @@ class CatalogView(QWidget):
         panel = QFrame()
         panel.setObjectName("panel")
         panel_layout = QVBoxLayout(panel)
-        panel_layout.setContentsMargins(32, 32, 32, 32)
+        panel_layout.setContentsMargins(24, 24, 24, 24)
         
         header_layout = QHBoxLayout()
         header_layout.addWidget(QLabel("Catálogo de Productos", objectName="h2"))

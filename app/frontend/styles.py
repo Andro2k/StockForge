@@ -27,7 +27,7 @@ class Palette:
 class Dims:
     """Dimensiones y Espaciados."""
     radius = {
-        "card": "24px", "input": "14px", "btn": "14px", "scroll": "4px"
+        "card": "24px", "input": "8px", "btn": "8px", "scroll": "4px"
     }
     layout = {
         "level_01": (10,10,10,10), "level_02": (16,16,16,16), 
@@ -141,7 +141,31 @@ def get_sheet() -> str:
     QSpinBox::up-button:hover, QSpinBox::down-button:hover, QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover{{ 
         background-color: {Palette.Border}; 
     }}
+    /* --- TABLAS --- */
+    QTableWidget {{
+        background-color: {c.Surface}; gridline-color: {c.Surface}; outline: none; border: none;
+    }}
+    QHeaderView::section {{
+        background-color: {c.Surface_Strong}; color: {Palette.Text}; border: none;
+        padding: 8px; font-weight: bold; text-transform: uppercase; font-size: 12px;
+    }}
+    QTableWidget::item {{ padding: 6px; border-bottom: 1px solid {c.Border}; }}
+    QTableWidget::item:selected {{ background-color: {c.Primary}; color: {c.Surface}; }}
+
+    /* --- COMBOBOX --- */
+    QComboBox {{
+        background-color: {Palette.Surface_Strong}; color: {Palette.Text}; 
+        border-radius: 8px; padding: 10px; border: 1px solid {Palette.Border};
+    }}
+    QComboBox:hover {{ border-color: {Palette.Primary}; }}
+    QComboBox::drop-down {{ border: none; }}
+    QComboBox::down-arrow {{ image: url({asset_url("chevron-down.svg")}); width: 14px; height: 14px; margin-right: 8px; }}
     
+    QComboBox QAbstractItemView {{
+        background-color: {Palette.Surface}; color: {Palette.Text};
+        selection-background-color: {Palette.Primary}; selection-color: white; 
+        border: 1px solid {Palette.Border}; outline: none;
+    }}
     """
     
 # ==========================================
@@ -191,39 +215,6 @@ STYLES = {
         QPushButton:hover {{ background-color: {Palette.Surface_Strong}; }}
     """,
 
-    # --- MODERN WIDGETS ---
-    "combobox_modern": f"""
-        QComboBox {{
-            background-color: {Palette.Surface_Strong}; color: {Palette.Text}; 
-            border-radius: 8px; padding: 10px; border: 1px solid {Palette.Border};
-        }}
-        QComboBox:hover {{ border-color: {Palette.Primary}; }}
-        QComboBox::drop-down {{ border: none; }}
-        QComboBox::down-arrow {{ image: url({asset_url("chevron-down.svg")}); width: 14px; height: 14px; margin-right: 8px; }}
-        
-        QComboBox QAbstractItemView {{
-            background-color: {Palette.Surface}; color: {Palette.Text};
-            selection-background-color: {Palette.Primary}; selection-color: white; 
-            border: 1px solid {Palette.Border}; outline: none;
-        }}
-    """,
-
-    # --- SIDEBAR ---
-    "sidebar": f"""
-        QFrame {{
-            background-color: {Palette.Surface};
-            border-right: 1px solid {Palette.Border};
-        }}
-    """,
-    "sidebar_btn": f"""
-        QPushButton {{
-            background-color: transparent; color: {Palette.Muted}; 
-            padding: 12px 16px; border: none; border-radius: 8px; 
-            text-align: left; font-weight: bold; font-size: 14px;
-        }}
-        QPushButton:hover {{ background-color: {Palette.Surface_Strong}; color: {Palette.Text}; }}
-        QPushButton:checked {{ background-color: {Palette.Surface_Strong}; color: {Palette.Primary}; }}
-    """,
     # --- SIDEBAR DARK MODE (Estilo Referencia) ---
     "sidebar_dark": f"""
         QFrame {{

@@ -19,7 +19,7 @@ class InventoryView(QWidget):
         
         container = QFrame(objectName="panel")
         form_layout = QVBoxLayout(container)
-        form_layout.setContentsMargins(32, 32, 32, 32)
+        form_layout.setContentsMargins(24, 24, 24, 24)
         form_layout.setSpacing(20)
 
         # --- SECCIÓN: IDENTIFICACIÓN ---
@@ -29,7 +29,6 @@ class InventoryView(QWidget):
         self.input_category = QComboBox()
         self.input_category.setEditable(True)
         self.input_category.addItems(["Electrónica", "Ropa", "Medicina", "Alimentos", "Ferretería"])
-        self.input_category.setStyleSheet(STYLES["combobox_modern"])
         
         self.input_name = QLineEdit(placeholderText="Nombre del producto...")
         
@@ -52,7 +51,6 @@ class InventoryView(QWidget):
         self.input_supplier = QComboBox()
         self.input_supplier.setEditable(True)
         self.input_supplier.addItems(["Distribuidor Local", "Importación Directa", "Logitech", "Pfizer"])
-        self.input_supplier.setStyleSheet(STYLES["combobox_modern"])
 
         # Caducidad
         exp_layout = QHBoxLayout()
